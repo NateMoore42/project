@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}That's a spicy 404!{% endblock %}
+{% block register_active %}active{% endblock %}
+
+{% block head %}
+{% load staticfiles %}
+<link href="{% static 'css/util.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+<div class="container w-container">
+  <div class="_404-container"><img class="eyeball-image w-preserve-3d" src="{% static 'images/eyeball.svg' %}" width="264">
+    <div class="password-page text-block">
+      <p class="text"><strong>This part of the site is guarded by extremely powerful magic.</strong>
+        <br>You're going to need a password if you want to continue.
+        <br><a class="danger" href="/">Or you can click here to leave.</a>
+      </p>
+      <div class="password-form-wrap w-form">
+        <form id="" name="">
+          <input class="password-field w-input w-preserve-3d" data-name="password" id="password" maxlength="256" name="password" placeholder="Password" required="required" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+          <input class="_404-button w-button" data-wait="Please wait..." type="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

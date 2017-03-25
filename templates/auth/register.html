@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+{% block register_active %}active{% endblock %}
+
+{% block head %}
+{% load staticfiles %}
+<link href="{% static 'css/main/register.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block body %}
+<div class="background">
+{% include 'nav.html' %}
+  <div class="login-container w-container">
+    <div class="login-box">
+      <div class="logo-container"></div>
+      <div class="form-wrapper w-form" >
+        <form class="form-container" action method="POST">
+          {% csrf_token %}
+          <label class="form-label" for="id_email">Email:</label>
+          <input autofocus="autofocus" class="form-field w-input" id="id_email" maxlength="256" name="email" required="required" type="email">
+          <label class="form-label" for="id_username">Username:</label>
+          <input autofocus="autofocus" class="form-field w-input" id="id_username" name="username" required="required" type="text">
+          <label class="form-label" for="id_password">Password:</label>
+          <input class="form-field w-input" id="id_password" name="password" required="required" type="password">
+          <input class="sign-in-button w-button" type="submit" value="Sign In">
+          {{ form.non_field_errors }}
+          {{ form.errors }}
+          <div class="seperator"></div>
+          <a class="form-link" href="/accounts/login/">Already have an account?</a>
+          <p class="form-text">By signing up you agree to our <br />
+          <a href="/docs/terms-of-service/" class="form-link">Terms of Service</a> and <a href="/docs/privacy-policy/" class="form-link">Privacy Policy</a>.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% include 'footer.html' %}
+</div>
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $('#id_username').keypress(function(key) {
+          if((key.charCode < 97 || key.charCode > 122) && (key.charCode < 65 || key.charCode > 90) && (key.charCode < 48 || key.charCode > 57)) return false;
+      });
+    });
+  </script>
+ {% endblock %}

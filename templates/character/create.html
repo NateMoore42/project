@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load render_bundle from webpack_loader %}
+
+{% block title %}Character Create{% endblock %}
+{% block register_active %}active{% endblock %}
+
+{% block head %}
+{% load staticfiles %}
+    <link href="{% static 'css/character-create.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+{% block body %}
+<!--
+<form action method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type='submit' value='submit' />
+</form>-->
+
+
+<form action method='POST'>
+    {% csrf_token %}
+    <label for"id_c_name">Character Name:</label>
+    {{ form.c_name }}
+    {{ form.level }}
+    <label for='id_description'>Description:</label>
+    {{ form.description }}
+    <label for="id_gender">Gender:</label>
+    {{ form.gender }}
+    <div id="react">
+      {% render_bundle 'main' %}
+    </div>
+    <label for='id_alignment'>Alignment:</label>
+    {{ form.alignment }}
+    <label for='id_dexterity'>Dexterity:</label>
+    <input id='id_dexterity' name='dexterity'/>
+    <i class="fa fa-repeat reroll-button"
+       id="roll_dex"
+       type="button">
+    </i>
+    <label for='id_strength'>Strength:</label>
+    <input id='id_strength' name='strength'/>
+    <i class="fa fa-repeat reroll-button"
+       id="roll_str"
+       type="button">
+    </i>
+    <label for='id_constitution'>Constitution:</label>
+    <input id='id_constitution' name='constitution'/>
+    <i class="fa fa-repeat reroll-button"
+       id="roll_con"
+       type="button">
+    </i>
+    <label for='id_charisma'>Charisma:</label>
+    <input id='id_charisma' name='charisma'/>
+    <i class="fa fa-repeat reroll-button"
+       id="roll_cha"
+       type="button">
+    </i>
+    <label for='id_wisdom'>Wisdom:</label>
+    <input id='id_wisdom' name='wisdom'/>
+    <i class="fa fa-repeat reroll-button"
+       id="roll_wis"
+       type="button">
+    </i>
+    <label for='id_intelligence'>Intelligence:</label>
+    <input id='id_intelligence' name='intelligence'/>
+    <i class="fa fa-repeat reroll-button"
+       id="roll_int"
+       type="button">
+    </i>
+    {{ form.armor }}
+    {{ form.shield }}
+    <label for id='id_hp'>Health:</label>
+    {{form.hp}}
+    <label for id='id_age'>Age:</label>
+    <input id="id_age" name="age" value="21"/>
+    <label for id='id_weight'>Weight:</label>
+    {{form.weight}}
+    <label for id='id_height'>Height:</label>
+    {{form.height}}
+    <label for id='id_experience'>Experience:</label>
+    {{form.experience}}
+    {{form.feats}}
+    <input id="id_can_fly" name="can_fly" type="checkbox" disabled/>
+    {{form.movement}}
+    <input type='submit' value='Create Character' />
+
+    {{form.errors}}
+    {{form.non_field_errors}}
+</form>
+
+<script src="{% static 'js/input-filters.min.js' %}"></script>
+<script src="{% static 'js/character-main.js' %}"></script>
+<script src="{% static 'js/js_modules/creation.js' %}"></script>
+<script type='text/javascript'>
+
+</script>
+<script>
+
+$(document).ready(function(){
+  $('input').iCheck({
+    checkboxClass: 'icheckbox_square-red',
+    radioClass: 'iradio_square-red',
+    increaseArea: '20%'
+  });
+});
+
+
+</script>
+    {% endblock %}

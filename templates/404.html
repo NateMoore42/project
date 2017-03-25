@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}That's a spicy 404!{% endblock %}
+{% block register_active %}active{% endblock %}
+
+{% block head %}
+{% load staticfiles %}
+<link href="{% static 'css/util.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+<div class="container w-container">
+  <div class="_404-container"><img class="danger-icon w-preserve-3d" src="{% static 'images/Zombie_skull.svg' %}" width="264">
+    <div class="text-block title">
+      <h1 class="heading">Looks like this page has been ransacked.</h1>
+    </div>
+    <div class="text-block">
+      <p class="text">Some wild goblins came along, killed this page, and took everything on it's corpse, a real tragedy.
+        <br>
+        <br>If you've traveled&nbsp;to this page from another website you should probably let them know they've got a dead link!
+        <br>
+        <br>If you came here from our website you can let us know we've got some goblins to hunt <strong class="link">using our contact page</strong>.</p><a class="_404-button w-button" href="/">Click here to get back on track</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

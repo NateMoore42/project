@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Edit {{character.c_name}}{% endblock %}
+{% block register_active %}active{% endblock %}
+
+{% block head %}
+{% load staticfiles %}
+{% endblock %}
+{% block body %}
+<h1>Welcome {{user.username}}</h1>
+<h1>Hello World</h1>
+<form action method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ cform.as_p }}
+    {{ iform.as_p }}
+
+    <input type='submit' value='Save' />
+</form>
+
+{% endblock %}

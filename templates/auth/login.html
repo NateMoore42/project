@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Olympifit - Register{% endblock %}
+{% block register_active %}active{% endblock %}
+{% block head %}
+
+{% load staticfiles %}
+<link href="{% static 'css/login.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+<div class="background">
+  {% include 'nav.html' %}
+  <div class="login-container w-container">
+    <div class="login-box">
+      <div class="logo-container"></div>
+      <div class="form-wrapper w-form">
+        <form class="form-container" action method="POST">
+          {% csrf_token %}
+          <label class="form-label" for="name">Email or Username:</label>
+          <input autofocus="autofocus" class="form-field w-input" id="id_username" name="username" required="required" type="text">
+          <label class="form-label" for="email">Password:</label>
+          <input class="form-field w-input" id="id_password" name="password" required="required" type="password">
+          <input class="sign-in-button w-button" type="submit" value="Sign In">
+          {{ form.non_field_errors }}
+          <div class="seperator"></div>
+          <a class="form-link" href="#">Can't Sign In?</a>
+          <br />
+          <a class="form-link" href="/accounts/register/">Don't have an account?</a>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% include 'footer.html' %}
+</div>
+{% endblock %}

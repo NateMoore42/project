@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ElfSyndicate | {% block title %}{% endblock %}</title>
+
+    {% load staticfiles %}
+    {% block head %}{% endblock %}
+
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/hover.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/webflow.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/normalize.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'images/favicon.ico' %}" rel="shortcut icon" type="image/png" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type='text/css'/><link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative:400,700|Cinzel:400,700|Julius+Sans+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type='text/css'/>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type='text/css'/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <link href="{% static 'css/square/red.css' %}" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/modernizr.js' %}"></script>
+    <script src="{% static 'js/webflow.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/jquery.mask.min.js' %}"></script>
+    <script src="{% static 'js/icheck.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script>
+    new WOW().init();
+
+    </script>
+</head>
+
+<body>
+    {% block body %} {% endblock %}
+    {% block javascript %}
+    {% endblock %}
+</body>
+
+</html>

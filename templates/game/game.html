@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}ElfSyndicate - {{game.name}}{% endblock %}
+{% block register_active %}active{% endblock %}
+
+{% block head %}
+{% load staticfiles %}
+<link href="{% static 'css/game.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block body %}
+  <div class="game-screen w-clearfix">
+    <div class="gamebox-container">
+      <div class="map">
+        <div class="zoom-container">
+          <div class="zoom-in-button"><img class="zoom-in" src="{% static 'images/magnify-plus-outline.svg' %}" width="35">
+          </div>
+          <div class="zoom-out-button"><img class="zoom-out" src="{% static 'images/magnify-minus-outline.svg' %}" width="35">
+          </div>
+        </div>
+        <div class="tool-container">
+          <div class="zoom-in-button"><img class="zoom-in" src="{% static 'images/ruler.svg' %}" width="35">
+          </div>
+          <div class="icon-container"><img class="icon" src="{% static 'images/magnify.svg' %}" width="35">
+          </div>
+          <div class="zoom-out-button"><img class="zoom-out" src="{% static 'images/brush.svg' %}" width="35">
+          </div>
+        </div>
+        <div class="map-box"></div>
+        <div class="player-container"><img class="player-icon" height="150" src="{% static 'images/Zombie_skull.svg' %}" width="150">
+          <div class="player-name">NateMate90</div>
+        </div>
+      </div>
+    </div>
+    <div class="chatbox">
+      <div class="chatbox-input">
+        <div class="chat-wrapper w-form">
+          <form class="chat-container" data-name="Email Form" id="email-form" name="email-form">
+            <textarea class="chat-input w-input" data-name="Chat Input" id="Chat-Input" maxlength="5000" name="Chat-Input" placeholder="Type something here">
+              </textarea>
+            <div class="send-button-container">
+              <input class="send-button w-button" data-wait="Please wait..." type="submit" value="&gt;">
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="game-name-container">
+        <h1 class="game-name">The Lost Mine of Phandelver</h1>
+        <h1 class="host-name">Hosted By: NateMate90</h1>
+      </div>
+      <div class="chatbox-live">
+        <div class="message-block">
+          <h4 class="username">NateMate90:</h4>
+          <p class="message-date">06/03/17: 6:03PM</p>
+          <p class="chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+        </div>
+        <div class="message-block">
+          <h4 class="username">NateMate90:</h4>
+          <p class="message-date">06/03/17: 6:03PM</p>
+          <p class="chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+        </div>
+      </div>
+      <div class="hide-button">Collapse Chat</div>
+      <div class="dice-bar">
+        <div class="custom-dice w-preserve-3d"><img class="dice" src="{% static 'images/checkbox-blank-outline.svg' %}">
+        </div><img class="dice" src="{% static 'images/dice-2.svg' %}"><img class="dice" src="{% static 'images/dice-d4.svg' %}"><img class="dice" src="{% static 'images/dice-d6.svg' %}"><img class="dice" src="{% static 'images/dice-d8.svg' %}"><img class="dice" src="{% static 'images/dice-d10.svg' %}"><img class="dice" src="{% static 'images/dice-d20.svg' %}">
+        <div class="multi-dice-select"><img class="dice" src="{% static 'images/dice-multiple.svg' %}">
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

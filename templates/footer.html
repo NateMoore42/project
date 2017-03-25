@@ -1,0 +1,44 @@
+{% block head %}
+{% load staticfiles %}
+<link href="{% static 'css/main/footer.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+<div class="footer-divider"></div>
+<div class="footer">
+  <div class="footer-container w-container">
+    <div class="footer-section-left">
+      <h1 class="footer-header">Get Social</h1>
+      <p class="footer-text">Be social with us and stay in the loop on all of our latest announcements.</p>
+      <div class="social-icon-container">
+        <a href="/"><img class="social-icon" src="{% static 'images/facebook-logo.svg' %}" alt="Facebook"></a>
+        <a href="/"><img class="social-icon" src="{% static 'images/twitter-logo.svg' %}" alt="Twitter"></a>
+        <a href="/"><img class="social-icon" src="{% static 'images/youtube-logo.svg' %}" alt="Youtube"></a>
+        <a href="/"><img class="social-icon" src="{% static 'images/google-logo.svg' %}" alt="Google+"></a>
+        <a href="/"><img class="social-icon" src="{% static 'images/github-logo.svg' %}" alt="Github"></a>
+        <a href="/"><img class="social-icon" src="{% static 'images/reddit-logo.svg' %}" alt="Reddit"></a>
+      </div>
+    </div>
+    <div class="footer-section-right">
+      <h1 class="footer-header">Stay Up To Date</h1>
+      <p class="footer-text">Get information on all the latest goodies straight to your inbox.
+        <br>We'll never send you spam or give out your email, we're not jerks.</p>
+      <div class="newsletter-wrapper w-form">
+        <form class="newsletter-form w-clearfix" id="email-form" name="email-form">
+          <input class="newsletter-signup w-input" id="email" maxlength="256" name="email" placeholder="Enter your email address" required="required" type="email">
+          <input class="newsletter-button w-button" type="submit" value="Join">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer-divider"></div>
+<div class="bottom-bar">
+  <div class="bottom-bar-container w-container">
+    <p class="footer-legal">Copyright © 2017 Paladin Party Ltd.</p>
+    <a class="bottom-bar-link" href="/docs/frequently-asked-questions/">FAQ</a>
+    <a class="bottom-bar-link" href="/docs/rules/">Rules</a>
+    <a class="bottom-bar-link" href="/docs/attributions/">Attributions</a>
+    <a class="bottom-bar-link" href="/docs/cookies/">Cookies</a>
+    <a class="bottom-bar-link" href="/docs/privacy-policy/">Privacy Policy</a>
+    <a class="bottom-bar-link" href="/docs/terms-and-conditions/">Terms &amp; Conditions</a>
+  </div>
+</div>

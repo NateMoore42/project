@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.username }}'s Profile{% endblock %}
+{% block register_active %}active{% endblock %}
+{% block head %}
+{% load staticfiles %}
+<link href="{% static 'css/main/profile.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block body %}
+{% include 'nav.html' %}
+<div class="main-container">
+  <div class="add-friend-popup w-hidden" id="add-friend-popup">
+    <div class="w-clearfix">
+        <div class="close-button">X</div>
+        <h1 class="add-friend-header">Add a Friend</h1>
+    </div>
+      <div class="add-friend-form-wrapper w-form">
+        <form class="add-friend-form">
+          <input class="add-friend-field w-input" id="add-friend" name="add-friend" placeholder="Enter Player Name" type="text">
+          <input disabled class="add-friend-submit w-button" type="submit" value="Send Request">
+        </form>
+      </div>
+  </div>
+    <div class="friends-list-container w-hidden" id="friends-list">
+      {% if friend_requests or pending_requests %}
+      <div class="friend-request-container" id="outstanding-requests">
+        <h1 class="friend-header">Friend Requests:</h1>
+          <ul class="w-list-unstyled">
+            {% for request in friend_requests %}
+            <li>
+              <div class="friend-requests">
+                <div class="friend-picture-container">
+                  <img class="friend-picture" height="50" src="{% static 'images/napoleon.png' %}" width="45">
+                </div>
+                <div class="name-container-friend-request">
+                  <p class="active-friend-name">{{ request.from_user }}</p>
+                </div>
+                <div class="button-container">
+                  <form method="POST" class="add-friend-form" id="friend-accept-reject-form">
+                    {% csrf_token %}
+                    <input type="submit" name="accept" class="accept request-button w-button" value="accept" id="request-accept"/>
+                    <input type="submit" name="reject" class="deny request-button w-button" value="reject" id="request-reject"/>
+                  </form>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+            {% if not user == request.user %}
+            {% for request in pending_requests %}
+            <li>
+              <div class="friend-requests">
+                <div class="friend-picture-container">
+                  <img class="friend-picture" height="50" src="{% static 'images/napoleon.png' %}" width="45">
+                </div>
+                <div class="name-container-friend-request">
+                  <p class="active-friend-name">{{ request.to_user }}</p>
+                </div>
+                <div class="button-container">
+                  <p class="active-friend-name">Pending...</p>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+            {% endif %}
+          </ul>
+      </div>
+      {% elif not friend_requests or pending_requests %}
+      <div class="friend-request-container w-hidden">
+      </div>
+      {% endif %}
+       <div class="current-friends" >
+         <h1 class="friend-header">Friends:</h1>
+         <ul class="w-list-unstyled" id="active-friend-list">
+           {% for friend in request.user.friends.all %}
+           <li>
+             <div class="active-friend">
+               <div class="friend-picture-container">
+                 <img class="friend-picture" height="50" src="{% static 'images/napoleon.png' %}" width="45">
+               </div>
+               <div class="name-container-friends-list">
+                 <div class="separator-top">
+                   <p class="active-friend-name" id="name">{{ friend }}</p>
+                 </div>
+                 <div class="separator-bottom">
+                   {% if friend.is_authenticated %}
+                   <div  class="online online-indicator"></div>
+                   {% else %}
+                   <div class="offline online-indicator"></div>
+                   {% endif %}
+                   <div class="separator-right">
+                     <p class="status-text">Performing blahblah activity</p>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </li>
+           {% endfor %}
+           <li>
+             <div class="active-friend">
+               <div class="friend-picture-container">
+                 <img class="friend-picture" height="50" src="{% static 'images/knight.png' %}" width="45">
+               </div>
+               <div class="name-container-friends-list">
+                 <div class="separator-top">
+                   <p class="active-friend-name offline" id="name">Jordan Keen</p>
+                 </div>
+                 <div class="separator-bottom">
+                   <div class="offline online-indicator"></div>
+                   <div class="separator-right">
+                     <p class="offline status-text">Performing blahblah activity</p>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </li>
+           <li>
+             <div class="active-friend no-friends">
+               <div class="name-container-friends-list">
+                 <p class="active-friend-name offline">No Friends Yet :'(</p>
+               </div>
+             </div>
+           </li>
+         </ul>
+       </div>
+       <div class="friends-list-bottom">
+         <div class="filter-wrapper w-form">
+           <form class="filter-form">
+             <input class="filter w-input" id="filter" name="filter" placeholder="Filter" type="text" onkeyup="FriendsListFilter()">
+           </form>
+         </div>
+         <a class="add-friend w-button" href="#" onclick="AddFriendOpen()">Add Friend</a>
+       </div>
+     </div>
+   <div class="name-container">
+     <div class="name-container-mobile w-hidden-main w-hidden-medium w-hidden-small">
+       <h1 class="username">{{ user.username }}</h1>
+       <h3 class="membership-type pro w-hidden-small">Pro Member</h3>
+       <div class="pro-star w-hidden-main w-hidden-medium w-hidden-tiny"></div>
+     </div>
+     <h1 class="username w-hidden-tiny">{{ user.username }}</h1>
+     <div class="pro-star w-hidden-small w-hidden-tiny"></div>
+     <div class="premium-star"></div>
+     {% if user.is_pro_member %}
+     <h3 class="membership-type pro w-hidden-small w-hidden-tiny">Pro Member</h3>
+     {% elif user.is_prem_member %}
+     <h3 class="membership-type premium w-hidden-small w-hidden-tiny">Premium Member</h3>
+     {% else %}
+     <h3 class="membership-type standard w-hidden-small w-hidden-tiny">Member</h3>
+     {% endif %}
+     <h5 class="friend-count">Friends: {{friend_count}}</h5>
+     <h5 class="games-count">Games Played: 2000</h5>
+   </div>
+   <div class="container">
+     <div class="sidebar-container">
+       <div class="profile-picture-container w-clearfix">
+         {% if user.profile.profile_picture %}
+         <img class="profile-picture" src="{{MEDIA_URL}}{{user.profile.profile_picture}}">
+         {% else %}
+         <img class="profile-picture" src="{% static 'images/knight.png' %}" />
+         {% endif %}
+       </div>
+       <div class="profile-information">
+         <div class="name">
+           {% if user.profile.first_name and user.profile.last_name %}
+           <h2 class="first-name">{{ user.profile.first_name }}</h2>
+           <h2 class="last-name">{{ user.profile.last_name }}</h2>
+           {% else %}
+           <h2 class="first-name">John</h2>
+           <h2 class="last-name">Doe</h2>
+           {% endif %}
+         </div>
+         {% if user.profile.city and user.profile.dob and user.profile.country %}
+         <h2 class="location">{{ user.profile.calculate_age }} - {{ user.profile.city }}, {{ user.profile.country }}</h2>
+         {% elif request.user == user %}
+         <h2 class="location">Set your age and location to have it display here.</h2>
+         {% endif %}
+         <div class="description-container">
+           {% if user.profile.description %}
+           <p class="description">{{ user.profile.description }}</p>
+           {% endif %}
+         </div>
+         {% if request.user == user %}
+         <a class="edit-button" href="/accounts/profile/edit/{{ user.username }}">Edit Profile</a>
+         <a class="logout-button " href="{% url 'accounts:logout' %}">Logout</a>
+         {% endif %}
+         {% if not user.username == request.user.username %}
+         {% if not request.user in user.friends.all %}
+         {% if errors %}<p>{{ errors|join:", "}}</p>{% endif %}
+         <form class="friend-request-form" method="POST">
+           {% csrf_token %}
+           <input type="hidden" name="user.username" value="{{ user.username }}" />
+           <input class="friend-request" value="Send Friend Request" type="submit" />
+         </form>
+         {% endif %}
+         {% endif %}
+       </div>
+     </div>
+     <div class="profile-body">
+       <div class="character-list">
+         {% for character in user.characters.all %}
+         <a class="character" href="/characters/character/edit/{{ character.pk }}/{{ character.c_name }}/">
+           <h1 class="character-name">{{ character }}</h1>
+           <h1 class="character-level">Level: {{ character.level }}</h1>
+         </a>
+         {% endfor %}
+         {% if user == request.user %}
+         <a class="character" href="/characters/create/">
+           <h1 class="create-a-character">Create a Character</h1>
+         </a>
+         {% endif %}
+       </div>
+     </div>
+   </div>
+ </div>
+ <div class="hotbar">
+  <button class="friend-list" id="friends-list-toggle" onclick="FriendsListToggle()">
+    <h1 class="friends">Friends</h1>
+  </button>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block register_active %}active{% endblock %}
+
+{% block head %}
+{% load staticfiles %}
+<link href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block body %}
+<div class="background">
+  {% include 'nav.html' %}
+  <div class="slider w-slider" data-animation="fade" data-autoplay="1" data-delay="10000" data-duration="800" data-easing="ease-out" data-infinite="1">
+    <div class="slide-mask w-slider-mask">
+      <div class="first slide w-slide">
+        <div class="slider-container w-container">
+          <div class="first slide-text-container">
+            <div class="first slide-title">ElfSyndicate</div>
+            <h1 class="first slide-subheader">Let the good times <strong class="subheader-span">roll </strong>.</h1>
+            <p class="first slide-paragraph"><strong>ElfSyndicate</strong> is an online platform designed to streamline and improve player experience in conventional Dungeons and Dragons gameplay. Spend less time worrying about whether your character can use those spells, whether you have enough arrows in your quiver, or arguing whether that monster is close enough for an opportunity attack, and spend more time playing the game.</p>
+            <a class="button slide w-button" href="/accounts/register/">Create your free account</a>
+          </div>
+        </div>
+      </div>
+      <div class="second slide w-slide">
+        <div class="slider-container w-container">
+          <div class="second slide-text-container">
+            <div class="second slide-title">Unearthed Arcana</div>
+            <h1 class="second slide-subheader">Now Available.</h1>
+            <a class="button slide w-button" href="/play/">Start playing Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slider-nav w-round w-shadow w-slider-nav"></div>
+  </div>
+  <div class="container w-container">
+    <div class="first main-section">
+      <div class="section-left">
+        <h2 class="plug-header">Simple Tools</h2>
+        <h4 class="plug-subheader">Take your game sessions to the next level.</h4>
+        <p class="plug-paragraph">Whether you're a player or the DM you'll have access to all of our powerful, simple macros and trackers at your fingertips.</p>
+      </div>
+      <div class="section-right">
+        <div class="plug-image-container">
+          <img src="{% static 'images/vampire.svg' %}">
+        </div>
+        <p class="plug-paragraph">Create and track hordes of enemies with a single click.</p>
+      </div>
+    </div>
+    <div class="main-body-divider"></div>
+    <div class="main-section">
+      <div class="section-left">
+        <h2 class="plug-header">Dynamic Character Sheets</h2>
+        <h4 class="plug-subheader">Spend more time playing, not writing.</h4>
+        <p class="plug-paragraph">We all know how annoying it can be having to update your sheet every time you get a new item, level up, or start to multi-class. Our dynamic character sheets automatically update your information any time an event occurs in game.</p>
+      </div>
+      <div class="section-right">
+        <div class="plug-image-container">
+          <img src="{% static 'images/frankenstein.svg' %}">
+        </div>
+        <p class="plug-paragraph">Don't like automation? You can toggle it off for a more traditional manual experience too.</p>
+      </div>
+    </div>
+    <div class="main-body-divider"></div>
+    <div class="main-section">
+      <div class="section-left">
+        <h2 class="plug-header">Anybody Can Join</h2>
+        <h4 class="plug-subheader">Start playing together in minutes.</h4>
+        <p class="plug-paragraph">All you need is a web browser and you're ready to play. The entire ElfSyndicate system runs in real-time directly in your browser with no need to download any files at all.</p>
+        <a class="button plug w-button" href="/play/">Play Now</a>
+      </div>
+      <div class="section-right">
+        <div class="plug-image-container">
+          <img src="{% static 'images/nurse.svg' %}">
+        </div>
+        <p class="plug-paragraph">Simply send a link to your friends and start playing together within minutes, not hours.</p>
+      </div>
+    </div>
+    <div class="main-body-divider"></div>
+    <div class="info-section">
+      <div class="info-block left">
+        <img src="{% static 'images/shuffle-symbol.svg' %}" width="100">
+        <h2 class="info-header">Quantum Dice</h2>
+        <p class="info-paragraph">By measuring the fluctuations inside of a quantum vacuum we can guarantee you are receiving truly, 100% random numbers with every roll.&nbsp;</p>
+        <a class="button info w-button" href="/docs/quantum-dice/">Learn More</a>
+      </div>
+      <div class="info-block middle">
+        <img src="{% static 'images/stop-symbol.svg' %}" width="100">
+        <h2 class="info-header">100% Ad-Free</h2>
+        <p class="info-paragraph">We believe that you deserve to enjoy a lifetime, ad-free experience. Never have annoying popups, banners, or videos interfering with your gameplay.</p>
+        <a class="button info w-button" href="/docs/ad-free/">More Information</a>
+      </div>
+      <div class="info-block right">
+        <img src="{% static 'images/document-symbol.svg' %}" width="100">
+        <h2 class="info-header">Extensive Docs</h2>
+        <p class="info-paragraph">Not sure about how to use any of the sites tools or features? Not up to scratch on your game knowledge? We have everything covered in our docs.</p>
+        <a class="button info w-button" href="/docs/">Read the docs</a>
+      </div>
+    </div>
+  </div>
+  {% include 'footer.html' %}
+</div>
+{% endblock %}

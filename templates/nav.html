@@ -1,0 +1,65 @@
+{% block head %}
+{% load staticfiles %}
+<link href="{% static 'css/main/nav.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+<div class="top-bar">
+  <div class="top-bar-container w-container">
+    <a class="top-bar-link" href="/docs/elf-syndicate/">About</a>
+    <a class="top-bar-link" href="/contact">Contact</a>
+    <a class="top-bar-link" href="/accounts/account/{{user.username}}/{{user.unique_id}}/subscriptions/">Subscriptions</a>
+    <a class="top-bar-link" href="/accounts/account/{{user.username}}/{{user.unique_id}}/settings/">Account</a>
+    <a class="top-bar-link" href="/support/">Support</a>
+    {% if request.user.is_authenticated %}
+    <a class="sign-up top-bar-link" href="{% url 'accounts:logout' %}">Logout</a>
+    <a class="sign-up top-bar-link" href="/accounts/profile/{{request.user.username}}/">{{ request.user.username }}</a>
+    {% else %}
+    <a class="sign-up top-bar-link" href="/accounts/login/">Log In</a>
+    {% endif %}
+  </div>
+</div>
+<div class="navbar w-nav" data-animation="default" data-collapse="medium" data-duration="400">
+  <div class="navbar-container w-container">
+    <a class="nav-brand nav-link w-nav-link" href="/"></a>
+    <nav class="nav-menu w-nav-menu" role="navigation">
+      <div class="dropdown w-dropdown">
+        <div class="docs nav-link w-dropdown-toggle" id="docs">
+          <div>Docs</div>
+          <div class="dropdown-icon w-icon-dropdown-toggle"></div>
+        </div>
+        <nav id="docs-nav" class="dropdown-list w-dropdown-list">
+          <a class="dropdown-link w-dropdown-link" href="#">ElfSyndicate</a>
+          <a class="dropdown-link w-dropdown-link" href="#">Tools</a>
+          <a class="dropdown-link w-dropdown-link" href="#">D&amp;D 5e</a>
+          <a class="dropdown-link w-dropdown-link" href="#">Unearthed Arcana</a>
+          <a class="dropdown-link w-dropdown-link" href="#">Volo's Guide To Monsters</a>
+          <a class="dropdown-link w-dropdown-link" href="#">Sword Coast Adventurer's Guide</a>
+          <a class="dropdown-link w-dropdown-link" href="#">Elemental Evil Player's Companion</a>
+        </nav>
+      </div>
+      <div class="dropdown w-dropdown">
+        <div class="community nav-link w-dropdown-toggle" id="community">
+          <div>Community</div>
+          <div class="dropdown-icon w-icon-dropdown-toggle"></div>
+        </div>
+        <nav id="community-nav" class="dropdown-list w-dropdown-list">
+          <a class="dropdown-link w-dropdown-link" href="#">Play Groups</a>
+          <a class="dropdown-link w-dropdown-link" href="#">Refer a Friend</a>
+          <a class="dropdown-link w-dropdown-link" href="#">Community Maps</a>
+          <a class="dropdown-link w-dropdown-link" href="#">Community Tokens</a>
+        </nav>
+      </div><a class="nav-link news w-nav-link" href="#">News</a>
+      <a class="forums nav-link w-nav-link" href="#">Forums</a>
+      {% if user.is_authenticated %}
+      <a class="nav-link play-now w-nav-link" href="/play/">Play Now</a>
+      {% else %}
+      <a class="nav-link play-now w-nav-link" href="/accounts/login/">Play Now</a>
+      {% endif %}
+    </nav>
+    <div class="menu-button w-nav-button">
+      <div class="nav-menu-icon w-icon-nav-menu"></div>
+    </div>
+  </div>
+</div>
+
+{% block javascript %}
+{% endblock %}
